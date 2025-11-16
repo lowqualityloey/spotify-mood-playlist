@@ -12,16 +12,13 @@ const queryClient = new QueryClient()
 
 document.addEventListener('DOMContentLoaded', () => {
   createRoot(document.getElementById('app') as HTMLElement).render(
-    /**
-     * TODO: replace domain, clientId, and audience
-     */
     <ChakraProvider value={defaultSystem}>
       <Auth0Provider
-        domain=""
-        clientId=""
+        domain="dev-7wxu11u3.au.auth0.com"
+        clientId="HwnGDfAfFMx1LrdeHaRFBGHXOrLJ2XtX"
         authorizationParams={{
           redirect_uri: window.location.origin,
-          audience: '',
+          audience: 'https://mood/api',
         }}
       >
         <QueryClientProvider client={queryClient}>
