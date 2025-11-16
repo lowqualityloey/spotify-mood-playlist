@@ -5,6 +5,7 @@ import { RouterProvider } from 'react-router/dom'
 import { createBrowserRouter } from 'react-router'
 import routes from './routes.tsx'
 import { Auth0Provider } from '@auth0/auth0-react'
+import { ChakraProvider, defaultSystem } from '@chakra-ui/react'
 
 const router = createBrowserRouter(routes)
 const queryClient = new QueryClient()
@@ -14,18 +15,20 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      * TODO: replace domain, clientId, and audience
      */
-    <Auth0Provider
-      domain=""
-      clientId=""
-      authorizationParams={{
-        redirect_uri: window.location.origin,
-        audience: '',
-      }}
-    >
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-        <ReactQueryDevtools />
-      </QueryClientProvider>
-    </Auth0Provider>,
+    <ChakraProvider value={defaultSystem}>
+      <Auth0Provider
+        domain=""
+        clientId=""
+        authorizationParams={{
+          redirect_uri: window.location.origin,
+          audience: '',
+        }}
+      >
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+          <ReactQueryDevtools />
+        </QueryClientProvider>
+      </Auth0Provider>
+    </ChakraProvider>,
   )
 })

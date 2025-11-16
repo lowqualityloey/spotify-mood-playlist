@@ -1,17 +1,21 @@
-import { useFruits } from '../hooks/useFruits.ts'
+import { Box, Heading, Text, Button, Flex } from '@chakra-ui/react'
 
 function App() {
-  const { data } = useFruits()
-
   return (
-    <>
-      <div className="app">
-        <h1 className="text-3xl font-bold underline">
-          Fullstack Boilerplate - with Fruits!
-        </h1>
-        <ul>{data && data.map((fruit) => <li key={fruit}>{fruit}</li>)}</ul>
-      </div>
-    </>
+    <Box p={8} textAlign="center" maxW="600px" mx="auto" bg={'green.300'}>
+      <Flex direction="column" gap={6}>
+        <Heading size="2xl" fontWeight="bold">
+          Welcome to Spotify Mood Generator
+        </Heading>
+        <Text fontSize="lg" color="gray.600">
+          Log in with your Spotify account, take a photo to detect your mood,
+          and get a playlist tailored just for you!
+        </Text>
+        <Button size="lg" onClick={() => alert('Login flow coming soon!')}>
+          Get Started
+        </Button>
+      </Flex>
+    </Box>
   )
 }
 
