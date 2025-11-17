@@ -18,7 +18,7 @@ export interface SpotifyTrack {
     id: string
     name: string
   }>
-  album: {
+  album?: {
     id: string
     name: string
     images: Array<{
@@ -28,7 +28,7 @@ export interface SpotifyTrack {
     }>
   }
   duration_ms: number
-  popularity: number
+  popularity?: number
 }
 
 export interface SpotifyAuthContextType {

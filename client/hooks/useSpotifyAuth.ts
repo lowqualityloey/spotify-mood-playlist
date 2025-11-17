@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { getTokenFromUrl, saveToken, getStoredToken, clearToken, getSpotifyAuthUrl, exchangeCodeForToken } from '../utils/spotify'
+import { initializeSpotifyApi } from '../utils/spotifyApi'
 
 export const useSpotifyAuth = () => {
   const [token, setToken] = useState<string | null>(null)
@@ -16,6 +17,7 @@ export const useSpotifyAuth = () => {
           saveToken(accessToken)
           setToken(accessToken)
           setIsAuthenticated(true)
+          initializeSpotifyApi(accessToken)
           window.history.replaceState({}, document.title, window.location.pathname)
         } catch (error) {
           console.error('Error exchanging code for token:', error)
@@ -23,6 +25,7 @@ export const useSpotifyAuth = () => {
       } else if (storedToken) {
         setToken(storedToken)
         setIsAuthenticated(true)
+        initializeSpotifyApi(storedToken)
       }
     }
     

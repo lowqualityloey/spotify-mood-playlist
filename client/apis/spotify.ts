@@ -1,35 +1,33 @@
-import request from 'superagent'
+import SpotifyWebApi from 'spotify-web-api-js'
 import { SpotifyUser, SpotifyTrack } from '../../models/spotify'
-
-const BASE_URL = 'https://api.spotify.com/v1'
+const spotifyApi = new SpotifyWebApi()
 
 const logError = (error: unknown) => {
   console.error('Spotify API Error:', error)
 }
 
-export const getMe = async (token: string): Promise<SpotifyUser> => {
+export const initializeApi = (token: string) => {
+  spotifyApi.setAccessToken(token)
+}
+
+export const getMe = async (): Promise<SpotifyUser> => {
   try {
-    const response = await request
-      .get(`${BASE_URL}/me`)
-      .set('Authorization', `Bearer ${token}`)
-    console.log(response.body)
-    return response.body
+    const user = await spotifyApi.getMe()
+    console.log(user)
+    return user as SpotifyUser
   } catch (error) {
     logError(error)
     throw error
   }
 }
 
-export const getRecommendations = async (
-  token: string,
-  seedGenres: string[],
-): Promise<SpotifyTrack[]> => {
+export const getRecommendations = async (seedGenres: string[]): Promise<SpotifyTrack[]> => {
   try {
-    const response = await request
-      .get(`${BASE_URL}/recommendations`)
-      .query({ seed_genres: seedGenres.join(','), limit: 20 })
-      .set('Authorization', `Bearer ${token}`)
-    return response.body.tracks
+    const response = await spotifyApi.getRecommendations({
+      seed_genres: seedGenres.join(','),
+      limit: 20,
+    })
+    return response.tracks as SpotifyTrack[]
   } catch (error) {
     logError(error)
     throw error
@@ -37,16 +35,15 @@ export const getRecommendations = async (
 }
 
 export const createPlaylist = async (
-  token: string,
   userId: string,
   name: string,
 ): Promise<{ id: string }> => {
   try {
-    const response = await request
-      .post(`${BASE_URL}/users/${userId}/playlists`)
-      .send({ name, public: false })
-      .set('Authorization', `Bearer ${token}`)
-    return response.body
+    const playlist = await spotifyApi.createPlaylist(userId, {
+      name,
+      public: false,
+    })
+    return playlist
   } catch (error) {
     logError(error)
     throw error
@@ -54,15 +51,11 @@ export const createPlaylist = async (
 }
 
 export const addTracksToPlaylist = async (
-  token: string,
   playlistId: string,
   trackUris: string[],
 ): Promise<void> => {
   try {
-    await request
-      .post(`${BASE_URL}/playlists/${playlistId}/tracks`)
-      .send({ uris: trackUris })
-      .set('Authorization', `Bearer ${token}`)
+    await spotifyApi.addTracksToPlaylist(playlistId, trackUris)
   } catch (error) {
     logError(error)
     throw error
