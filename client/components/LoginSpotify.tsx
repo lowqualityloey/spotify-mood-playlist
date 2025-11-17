@@ -2,7 +2,7 @@ import { Box, Heading, Text, Button, Flex } from '@chakra-ui/react'
 import { useSpotifyAuth } from '../hooks/useSpotifyAuth'
 
 function LoginSpotify() {
-  const { token, isAuthenticated, login, logout } = useSpotifyAuth()
+  const { token, isAuthenticated, login, logoutSpotify } = useSpotifyAuth()
 
   return (
     <Box p={8} textAlign="center" maxW="600px" mx="auto" bg={'green.300'}>
@@ -23,7 +23,7 @@ function LoginSpotify() {
             <Text color="green.700" fontWeight="bold">
               ✅ Spotify Connected
             </Text>
-            <Button size="sm" colorScheme="red" onClick={logout}>
+            <Button size="sm" colorScheme="red" onClick={logoutSpotify}>
               Disconnect Spotify
             </Button>
           </Flex>

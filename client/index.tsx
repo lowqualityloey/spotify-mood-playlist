@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
           redirect_uri: window.location.origin,
           audience: 'https://mood/api',
         }}
+        cacheLocation="localstorage"
       >
         <QueryClientProvider client={queryClient}>
           <RouterProvider router={router} />

@@ -37,7 +37,7 @@ export const useSpotifyAuth = () => {
     window.location.href = authUrl
   }
 
-  const logout = () => {
+  const logoutSpotify = () => {
     clearToken()
     setToken(null)
     setIsAuthenticated(false)
@@ -47,6 +47,6 @@ export const useSpotifyAuth = () => {
     token,
     isAuthenticated,
     login,
-    logout
+    logoutSpotify
   }
 }
