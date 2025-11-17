@@ -1,19 +1,16 @@
 import { IfAuthenticated } from './Authenticated.tsx'
 import { Box, Button, Text, Heading, Flex } from '@chakra-ui/react'
 import { useAuth0 } from '@auth0/auth0-react'
-import { useSpotifyAuth } from '../hooks/useSpotifyAuth.ts'
+import { useSpotifyAuth } from '../hooks/useSpotifyAuth'
 
 function Nav() {
   const { user, logout } = useAuth0()
-  const {
-    logoutSpotify,
-    isAuthenticated: spotifyAuth,
-    token,
-  } = useSpotifyAuth()
+  const { logoutSpotify } = useSpotifyAuth()
 
   const handleSignOut = () => {
+    logout()
     logoutSpotify()
-    logout({ logoutParams: { returnTo: window.location.origin } })
+    console.log('sign out')
   }
 
   return (

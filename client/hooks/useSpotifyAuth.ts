@@ -70,6 +70,6 @@ export const useSpotifyAuth = () => {
     token,
     isAuthenticated,
     login,
-    logoutSpotify,
+    logoutSpotify
   }
 }
