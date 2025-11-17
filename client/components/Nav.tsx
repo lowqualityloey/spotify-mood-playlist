@@ -19,8 +19,8 @@ function Nav() {
         <Heading size="md">Spotify Mood Generator</Heading>
         <Flex align="center" gap={4}>
           <IfAuthenticated>
-            <Text>Signed in as: {user?.nickname}</Text>
-            <Button onClick={handleSignOut} colorScheme="red" size="sm">
+            <Text>Hello! {user?.nickname}</Text>
+            <Button onClick={handleSignOut} size="sm">
               Sign out
             </Button>
           </IfAuthenticated>

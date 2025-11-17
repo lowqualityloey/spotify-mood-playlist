@@ -43,3 +43,18 @@ export interface SpotifyAuthContextType {
 export interface LoginProps {
   onLogin: () => void
 }
+
+export const moodTypes = {
+  happy: 'happy',
+  sad: 'sad',
+  relaxed: 'relaxed',
+  energetic: 'energetic',
+  angry: 'angry',
+  dreamy: 'dreamy',
+  romantic: 'romantic',
+  party: 'party',
+  focused: 'focused',
+  chill: 'chill'
+} as const
+
+export type MoodType = keyof typeof moodTypes

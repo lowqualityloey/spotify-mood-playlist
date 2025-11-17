@@ -76,3 +76,10 @@ export const saveToken = (token: string) => {
 export const getStoredToken = () => {
   return localStorage.getItem('spotify_token')
 }
+
+export const refreshSpotifyToken = async (): Promise<string | null> => {
+  // Spotify PKCE flow doesn't support refresh tokens
+  // User needs to re-authenticate
+  clearToken()
+  return null
+}
