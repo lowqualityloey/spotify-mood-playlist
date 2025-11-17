@@ -5,26 +5,68 @@ function LoginSpotify() {
   const { isAuthenticated, login, logoutSpotify } = useSpotifyAuth()
 
   return (
-    <Box p={8} textAlign="center" maxW="600px" mx="auto" bg={'green.300'}>
-      <Flex direction="column" gap={6}>
-        <Heading size="2xl" fontWeight="bold">
-          Welcome to Spotify Mood Generator
+    <Box
+      p={23}
+      textAlign="center"
+      maxW="700px"
+      mx="auto"
+      bg="black"
+      borderRadius="xl"
+      shadow="lg"
+      border="1px"
+      borderColor="gray.200"
+      mb={10}
+      mt={4}
+    >
+      <Flex direction="column" gap={8}>
+        <Heading size="2xl" fontWeight="bold" color="gray.200">
+          Spotify Mood Playlist
         </Heading>
-        <Text fontSize="lg" color="gray.600">
-          Log in with your Spotify account, take a photo to detect your mood,
-          and get a playlist tailored just for you!
+        <Text fontSize="xl" color="gray.300" maxW="500px" mx="auto">
+          Connect your Spotify account, capture your mood through photos, and
+          discover personalized playlists crafted just for you.
         </Text>
         {!isAuthenticated ? (
-          <Button size="lg" colorScheme="green" onClick={login}>
+          <Button
+            size="lg"
+            px={8}
+            py={6}
+            fontSize="lg"
+            borderRadius="full"
+            style={{ backgroundColor: '#1DB954' }}
+            color="white"
+            transition="all 0.2s"
+            onClick={login}
+          >
             Connect with Spotify
           </Button>
         ) : (
-          <Flex direction="column" gap={4}>
-            <Text color="green.700" fontWeight="bold">
-              Spotify Connected
-            </Text>
-            <Button size="sm" colorScheme="red" onClick={logoutSpotify}>
-              Disconnect Spotify
+          <Flex direction="column" gap={4} align="center">
+            <Flex
+              align="center"
+              gap={2}
+              bg="green.50"
+              px={4}
+              py={2}
+              borderRadius="full"
+              border="1px"
+              borderColor="green.200"
+            >
+              <Text color="green.700" fontWeight="bold" fontSize="lg">
+                ✅ Spotify Connected
+              </Text>
+            </Flex>
+            <Button
+              borderRadius="full"
+              style={{ backgroundColor: 'red' }}
+              size="sm"
+              fontWeight={'bold'}
+              variant="outline"
+              colorScheme="red"
+              px={5}
+              onClick={logoutSpotify}
+            >
+              Disconnect
             </Button>
           </Flex>
         )}

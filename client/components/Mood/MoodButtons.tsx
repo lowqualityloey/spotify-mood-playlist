@@ -44,6 +44,7 @@ const MoodButtons = () => {
             marginBottom: '16px',
           }}
         >
+          <script src="./assets/vendor/canvas-confetti/dist/confetti.browser.js"></script>
           <iframe
             src={`https://open.spotify.com/embed/playlist/${playlistUrl.split('/').pop()}`}
             width="300"
@@ -54,7 +55,6 @@ const MoodButtons = () => {
             style={{ borderRadius: '12px', border: 'none' }}
           ></iframe>
         </div>
-
         <div style={{ marginTop: '16px' }}>
           <button
             onClick={resetPlaylist}
@@ -75,9 +75,14 @@ const MoodButtons = () => {
   }
 
   return (
-    <div style={{ padding: '24px' }}>
+    <div style={{ padding: '0 24px 24px 24px' }}>
       <h1
-        style={{ fontSize: '32px', textAlign: 'center', marginBottom: '24px' }}
+        style={{
+          fontSize: '32px',
+          textAlign: 'center',
+          marginBottom: '24px',
+          marginTop: '0',
+        }}
       >
         Choose Your Mood
       </h1>
@@ -99,7 +104,7 @@ const MoodButtons = () => {
       <p
         style={{ textAlign: 'center', marginBottom: '16px', color: '#718096' }}
       >
-        Select a mood to create your playlist:
+        select a mood to create your playlist
       </p>
 
       <div
@@ -107,6 +112,11 @@ const MoodButtons = () => {
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
           gap: '16px',
+          backgroundColor: '#FFD6D9',
+          borderRadius: '5px',
+          padding: '16px',
+          maxWidth: '600px',
+          margin: '0 auto',
         }}
       >
         {Object.keys(moodTypes).map((moodKey) => {
@@ -117,9 +127,10 @@ const MoodButtons = () => {
               onClick={() => createMoodPlaylist(moodType)}
               disabled={isLoading}
               style={{
-                border: '2px solid #38A169',
+                border: '1px solid #AC5160',
                 backgroundColor: 'transparent',
-                color: '#38A169',
+                fontWeight: 'bold',
+                color: '#AC5160',
                 padding: '16px',
                 height: '80px',
                 borderRadius: '8px',
@@ -129,7 +140,7 @@ const MoodButtons = () => {
               }}
             >
               <div>
-                <div style={{ fontSize: '24px', marginBottom: '4px' }}>
+                <div style={{ fontSize: '18px', marginBottom: '4px' }}>
                   {moodEmojis[moodType]}
                 </div>
                 <div style={{ fontSize: '14px', textTransform: 'capitalize' }}>

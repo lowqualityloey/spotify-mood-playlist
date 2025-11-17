@@ -25,25 +25,13 @@ function App() {
       <LoginSpotify />
       {spotifyAuth ? (
         <>
-          <h1
-            style={{
-              fontSize: '32px',
-              textAlign: 'center',
-              marginBottom: '24px',
-            }}
-          >
+          <h1 className="text-3xl text-center mb-4">
             Take a Photo
           </h1>
           <OpenCameraButton onClick={onOpen} />
-          <h1
-            style={{
-              fontSize: '32px',
-              textAlign: 'center',
-              marginBottom: '24px',
-            }}
-          >
+          <h2 className="text-2xl text-center mb-2 text-gray-600">
             or
-          </h1>
+          </h2>
           <MoodCamera isOpen={isOpen} onClose={onClose} />
           <MoodButtons />
         </>

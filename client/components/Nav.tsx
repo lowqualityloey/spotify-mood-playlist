@@ -11,12 +11,8 @@ function Nav() {
     token,
   } = useSpotifyAuth()
 
-
-
   const handleSignOut = () => {
-    // Clear Spotify token immediately before Auth0 redirect
     logoutSpotify()
-    // Auth0 logout will redirect, so Spotify logout must happen first
     logout({ logoutParams: { returnTo: window.location.origin } })
   }
 
@@ -26,8 +22,8 @@ function Nav() {
         <Heading size="md">Spotify Mood Generator</Heading>
         <Flex align="center" gap={4}>
           <IfAuthenticated>
-            <Text>Signed in as: {user?.nickname}</Text>
-            <Button onClick={handleSignOut} colorScheme="red" size="sm">
+            <Text>Hello! {user?.nickname}</Text>
+            <Button onClick={handleSignOut} size="sm">
               Sign out
             </Button>
           </IfAuthenticated>

@@ -33,6 +33,7 @@
     "@emotion/styled": "^11.14.1",
     "@tensorflow-models/face-landmarks-detection": "^1.0.6",
     "@tensorflow/tfjs": "^4.22.0",
+    "canvas-confetti": "^1.9.4",
     "express": "^4.17.2",
     "express-jwt": "^7.7.5",
     "framer-motion": "^12.23.24",
