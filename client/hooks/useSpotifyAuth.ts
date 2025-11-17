@@ -45,6 +45,8 @@ export const useSpotifyAuth = () => {
         setIsAuthenticated(true)
         initializeSpotifyApi(storedToken)
       } else {
+        setToken(null)
+        setIsAuthenticated(false)
       }
 
       setHasChecked(true)

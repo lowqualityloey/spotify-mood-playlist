@@ -47,8 +47,8 @@ const MoodButtons = () => {
           <script src="./assets/vendor/canvas-confetti/dist/confetti.browser.js"></script>
           <iframe
             src={`https://open.spotify.com/embed/playlist/${playlistUrl.split('/').pop()}`}
-            width="300"
-            height="380"
+            width="520"
+            height="400"
             title={`${mood} mood playlist`}
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             loading="lazy"
