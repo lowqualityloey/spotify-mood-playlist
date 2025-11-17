@@ -1,16 +1,21 @@
+import { useState } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
+import { Stack } from '@chakra-ui/react'
+import { useSpotifyAuth } from '../hooks/useSpotifyAuth'
+
 import LoginAuth from './LoginAuth.tsx'
 import LoginSpotify from './LoginSpotify.tsx'
 import Loading from './Loading.tsx'
 import MoodButtons from './Mood/MoodButtons.tsx'
-import { Stack } from '@chakra-ui/react'
-import { useSpotifyAuth } from '../hooks/useSpotifyAuth'
+import MoodCamera from './Mood/MoodCamera.tsx'
+import OpenCameraButton from './OpenCameraButton.tsx'
 
 function App() {
   const { isAuthenticated, isLoading } = useAuth0()
-  const { isAuthenticated: spotifyAuth, token } = useSpotifyAuth()
-
-
+  const { isAuthenticated: spotifyAuth } = useSpotifyAuth()
+  const [isOpen, setIsOpen] = useState(false)
+  const onOpen = () => setIsOpen(true)
+  const onClose = () => setIsOpen(false)
 
   if (isLoading) return <Loading />
   if (!isAuthenticated) return <LoginAuth />
@@ -19,7 +24,29 @@ function App() {
     <Stack direction="column">
       <LoginSpotify />
       {spotifyAuth ? (
-        <MoodButtons />
+        <>
+          <h1
+            style={{
+              fontSize: '32px',
+              textAlign: 'center',
+              marginBottom: '24px',
+            }}
+          >
+            Take a Photo
+          </h1>
+          <OpenCameraButton onClick={onOpen} />
+          <h1
+            style={{
+              fontSize: '32px',
+              textAlign: 'center',
+              marginBottom: '24px',
+            }}
+          >
+            or
+          </h1>
+          <MoodCamera isOpen={isOpen} onClose={onClose} />
+          <MoodButtons />
+        </>
       ) : (
         <div>
           <Loading />

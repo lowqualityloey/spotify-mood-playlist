@@ -21,8 +21,6 @@ export const useSpotifyAuth = () => {
       const code = getTokenFromUrl()
       const storedToken = getStoredToken()
 
-
-
       if (code) {
         try {
           const accessToken = await exchangeCodeForToken(code)
@@ -43,12 +41,10 @@ export const useSpotifyAuth = () => {
           console.error('Error exchanging code for token:', error)
         }
       } else if (storedToken) {
-
         setToken(storedToken)
         setIsAuthenticated(true)
         initializeSpotifyApi(storedToken)
       } else {
-
       }
 
       setHasChecked(true)
