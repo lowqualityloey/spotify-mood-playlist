@@ -3,6 +3,7 @@ import { Box, Heading, Text, Button, Flex } from '@chakra-ui/react'
 
 function Login() {
   const { loginWithRedirect } = useAuth0()
+  
   return (
     <Flex minH="80vh" align="center" justify="center">
       <Box
