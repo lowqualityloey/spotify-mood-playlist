@@ -41,7 +41,7 @@ export const useMoodPlaylist = () => {
           allTracks = [...allTracks, ...tracks]
           if (allTracks.length >= 22) break
         } catch (err) {
-          console.log('Query failed:', query)
+          // Query failed silently
         }
       }
 

@@ -33,7 +33,7 @@ const MoodButtons = () => {
         </h2>
 
         <p style={{ marginBottom: '16px' }}>
-          {moodTypes[mood as MoodType]}
+          Mood for {moodTypes[mood as MoodType]} tracks
           {moodEmojis[mood]}
         </p>
 
@@ -48,10 +48,10 @@ const MoodButtons = () => {
             src={`https://open.spotify.com/embed/playlist/${playlistUrl.split('/').pop()}`}
             width="300"
             height="380"
-            frameBorder="0"
+            title={`${mood} mood playlist`}
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             loading="lazy"
-            style={{ borderRadius: '12px' }}
+            style={{ borderRadius: '12px', border: 'none' }}
           ></iframe>
         </div>
 

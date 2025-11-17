@@ -8,7 +8,7 @@ import { useSpotifyAuth } from '../hooks/useSpotifyAuth'
 
 function App() {
   const { isAuthenticated, isLoading } = useAuth0()
-  const { isAuthenticated: spotifyAuth } = useSpotifyAuth()
+  const { isAuthenticated: spotifyAuth, token } = useSpotifyAuth()
 
 
 
@@ -18,7 +18,13 @@ function App() {
   return (
     <Stack direction="column">
       <LoginSpotify />
-      {spotifyAuth && <MoodButtons />}
+      {spotifyAuth ? (
+        <MoodButtons />
+      ) : (
+        <div>
+          <Loading />
+        </div>
+      )}
     </Stack>
   )
 }
