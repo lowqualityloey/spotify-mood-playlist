@@ -1,6 +1,10 @@
+import { useEffect } from 'react'
 import { useMoodPlaylist } from '../../hooks/useMoodPlaylist'
 import { MoodType, moodTypes } from '../../../models/spotify'
 import Loading from '../Loading'
+
+// @ts-expect-error canvas-confetti doesn't have TypeScript declarations
+import confetti from 'canvas-confetti'
 
 const moodEmojis = {
   happy: '😊',
@@ -25,6 +29,16 @@ const MoodButtons = () => {
     resetPlaylist,
   } = useMoodPlaylist()
 
+  useEffect(() => {
+    if (playlistUrl) {
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+      })
+    }
+  }, [playlistUrl])
+
   if (mood && playlistUrl) {
     return (
       <div style={{ textAlign: 'center', padding: '24px' }}>
@@ -44,7 +58,6 @@ const MoodButtons = () => {
             marginBottom: '16px',
           }}
         >
-          <script src="./assets/vendor/canvas-confetti/dist/confetti.browser.js"></script>
           <iframe
             src={`https://open.spotify.com/embed/playlist/${playlistUrl.split('/').pop()}`}
             width="520"
